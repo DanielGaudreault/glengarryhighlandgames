@@ -6,11 +6,11 @@
     <title>Glengarry Highland Games</title>
     <!-- Font Awesome 6 (free) for optional icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Favicon: using the GHG logo (supports modern browsers) -->
+    <!-- Favicon: using the specific GHG logo as text-based image -->
     <link rel="icon" type="image/webp" href="images/GHG-logo+OFF.webp">
     <link rel="shortcut icon" href="images/GHG-logo+OFF.webp" type="image/webp">
-    <!-- Fallback for older browsers -->
-    <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%232b4f3b'><text x='10' y='70' font-size='70'>🏴󠁧󠁢󠁳󠁣󠁴󠁿</text></svg>">
+    <!-- Fallback emoji favicon for browsers that don't support webp favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='10' y='70' font-size='70' fill='%232b4f3b'>🏴󠁧󠁢󠁳󠁣󠁴󠁿</text></svg>">
     <style>
         * {
             margin: 0;
@@ -31,11 +31,11 @@
             padding: 1.5rem 2rem;
         }
 
-        /* ===== HEADER: logo big, top left, no extra clutter ===== */
+        /* ===== HEADER: logo big, top left ===== */
         .header-row {
             display: flex;
             align-items: center;
-            justify-content: space-between; /* keeps logo left, badge right */
+            justify-content: space-between;
             margin-bottom: 1.5rem;
             border-bottom: 2px solid #e0d6c3;
             padding-bottom: 1rem;
@@ -44,42 +44,31 @@
         .logo-home {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
         }
 
         .logo-link {
             display: inline-block;
             transition: opacity 0.2s;
-            line-height: 0; /* removes extra space under image */
+            line-height: 0;
         }
         .logo-link:hover {
             opacity: 0.8;
         }
 
-        /* bigger logo! */
+        /* big logo */
         .logo-img {
-            height: 110px;        /* increased size */
+            height: 120px;        /* even bigger */
             width: auto;
-            max-width: 280px;
+            max-width: 320px;
             object-fit: contain;
             background: #f8f2e7;
             border-radius: 20px;
-            padding: 0.4rem;
+            padding: 0.5rem;
             border: 2px solid #b8aa92;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        .games-date {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            color: #2b4f3b;
-            background: #f0ebe1;
-            padding: 0.3rem 1.2rem;
-            border-radius: 40px;
-            border-left: 5px solid #a33327;
-            white-space: nowrap;
-        }
+        /* removed the date span - completely deleted */
 
         .since-badge {
             font-size: 1.1rem;
@@ -91,7 +80,7 @@
             white-space: nowrap;
         }
 
-        /* ===== NAVIGATION: only home & about, as requested ===== */
+        /* ===== NAVIGATION: working home & about buttons ===== */
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -105,6 +94,7 @@
             padding: 0.3rem 1rem;
             border-radius: 40px;
             transition: 0.15s;
+            cursor: pointer;
         }
         .nav-links a:hover {
             background: #2b4f3b;
@@ -116,7 +106,7 @@
             pointer-events: none;
         }
 
-        /* ===== ABOUT PAGE HERO (refined, no event links) ===== */
+        /* ===== ABOUT PAGE HERO ===== */
         .hero-about {
             background: linear-gradient(rgba(20, 20, 15, 0.7), rgba(20, 20, 15, 0.8)), url('images/home2.jpg');
             background-size: cover;
@@ -146,7 +136,7 @@
             color: #f0e0cc;
         }
 
-        /* ===== MAIN CONTENT (no event boxes, no pdf button) ===== */
+        /* ===== MAIN CONTENT ===== */
         .about-grid {
             display: grid;
             grid-template-columns: 3fr 2fr;
@@ -208,7 +198,7 @@
             transform: scale(1.02);
         }
 
-        /* secondary gallery (more images, no links) */
+        /* secondary gallery */
         .story-gallery {
             background: #ebdfcf;
             border-radius: 48px;
@@ -237,7 +227,7 @@
             box-shadow: 0 8px 15px #7b6148;
         }
 
-        /* contact / volunteer box (clean, no stray links) */
+        /* volunteer box - email removed */
         .volunteer-box {
             background: #2b4f3b;
             color: #fef2df;
@@ -261,7 +251,7 @@
             margin-right: 0.5rem;
         }
 
-        /* footer: clean, no image list */
+        /* footer clean */
         .footer-note {
             margin-top: 4rem;
             padding: 1.5rem 0;
@@ -271,16 +261,10 @@
             color: #4f4a40;
         }
 
-        /* no schedule/program or event buttons anywhere */
-        .removed-events {
-            display: none;
-        }
-
         @media (max-width: 700px) {
             .container { padding: 1rem; }
             .header-row { flex-wrap: wrap; gap: 1rem; }
             .logo-img { height: 85px; }
-            .games-date { font-size: 1.3rem; }
             .hero-about h1 { font-size: 2.8rem; }
             .about-grid { grid-template-columns: 1fr; }
         }
@@ -288,85 +272,132 @@
 </head>
 <body>
     <div class="container">
-        <!-- HEADER with big logo top left, date & since badge -->
+        <!-- HEADER with big logo top left, NO date span -->
         <div class="header-row">
             <div class="logo-home">
-                <!-- logo big and left -->
-                <a href="index.html" class="logo-link" id="home-logo-link">
-                    <img src="images/GHG-logo+OFF.webp" alt="Highland Games logo" class="logo-img" onerror="this.src='https://via.placeholder.com/280x110?text=Logo'">
+                <!-- logo big and left - now with working home link -->
+                <a href="#" class="logo-link" id="home-logo-link">
+                    <img src="images/GHG-logo+OFF.webp" alt="Highland Games logo" class="logo-img" onerror="this.src='https://via.placeholder.com/320x120?text=GHG+Logo'">
                 </a>
-                <span class="games-date">July 31–August 1, 2026</span>
+                <!-- July 31–August 1, 2026 has been removed completely -->
             </div>
             <div class="since-badge"><i class="fas fa-flag"></i> Since 1948</div>
         </div>
 
-        <!-- simple nav: home / about (no events, attending, etc) -->
+        <!-- simple nav: home / about - now with working JavaScript handlers -->
         <div class="nav-links">
-            <a href="index.html" id="nav-home">Home</a>
-            <a href="about.html" id="nav-about" class="active">About</a>
+            <a href="#" id="nav-home" class="active">Home</a>
+            <a href="#" id="nav-about">About</a>
         </div>
 
-        <!-- ABOUT PAGE HERO (clean, no event links) -->
-        <div class="hero-about">
-            <h1>Proud keepers of the Highland spirit since 1948</h1>
-            <p>One of the largest Highland gatherings in the world, rooted in Glengarry County, Ontario.</p>
+        <!-- HOME PAGE (hidden by default, shown when home clicked) -->
+        <div id="home-page" style="display: none;">
+            <!-- Home page content would go here - this is just a placeholder -->
+            <div style="background: #f0ebe1; border-radius: 48px; padding: 4rem; text-align: center; margin: 2rem 0;">
+                <h2 style="font-size: 3rem; color: #2b4f3b;">Welcome to the Home Page</h2>
+                <p style="font-size: 1.4rem; margin-top: 1rem;">This is where your main index.html content would appear.</p>
+                <p style="margin-top: 2rem;">For now, click "About" to see the about page.</p>
+            </div>
         </div>
 
-        <!-- MAIN CONTENT GRID (no attending/competitions cards) -->
-        <div class="about-grid">
-            <div class="history-block">
-                <h2>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Our story</h2>
-                <p>The Glengarry Highland Games were founded in 1948 by a handful of local businessmen with a vision: to ensure that Scottish traditions would not fade for younger generations. What began as a small community event has grown into a world‑renowned celebration of Celtic culture.</p>
-                <p>Today, the Games are organized by the Kenyon Agricultural Society, a volunteer‑driven non‑profit. Thousands of visitors gather each year in Maxville to witness massed bands, heavyweight athletics, highland dancing, and the warm embrace of Scottish hospitality.</p>
-                <div class="highlight">
-                    <i class="fas fa-quote-left" style="color:#6f4e2b; margin-right:10px;"></i> 
-                    We extend close to a million welcomes — just as we have for over seventy years.
+        <!-- ABOUT PAGE (visible by default) -->
+        <div id="about-page">
+            <!-- ABOUT PAGE HERO -->
+            <div class="hero-about">
+                <h1>Proud keepers of the Highland spirit since 1948</h1>
+                <p>One of the largest Highland gatherings in the world, rooted in Glengarry County, Ontario.</p>
+            </div>
+
+            <!-- MAIN CONTENT GRID -->
+            <div class="about-grid">
+                <div class="history-block">
+                    <h2>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Our story</h2>
+                    <p>The Glengarry Highland Games were founded in 1948 by a handful of local businessmen with a vision: to ensure that Scottish traditions would not fade for younger generations. What began as a small community event has grown into a world‑renowned celebration of Celtic culture.</p>
+                    <p>Today, the Games are organized by the Kenyon Agricultural Society, a volunteer‑driven non‑profit. Thousands of visitors gather each year in Maxville to witness massed bands, heavyweight athletics, highland dancing, and the warm embrace of Scottish hospitality.</p>
+                    <div class="highlight">
+                        <i class="fas fa-quote-left" style="color:#6f4e2b; margin-right:10px;"></i> 
+                        We extend close to a million welcomes — just as we have for over seventy years.
+                    </div>
+                    <p>The spirit lives on: from the thunder of the caber to the lilt of the fiddle, every detail honours our deep roots.</p>
                 </div>
-                <p>The spirit lives on: from the thunder of the caber to the lilt of the fiddle, every detail honours our deep roots.</p>
+                <div class="image-strip">
+                    <!-- using your images (all from /images/) -->
+                    <img src="images/0N7A2922.webp" alt="crowd with flags" onerror="this.src='https://via.placeholder.com/300x180?text=historic'">
+                    <img src="images/27f22a83-863.webp" alt="drum major" onerror="this.src='https://via.placeholder.com/300x180?text=drum+major'">
+                    <img src="images/drummajor.webp" alt="drum major solo" onerror="this.src='https://via.placeholder.com/300x180?text=drumming'">
+                    <img src="images/emma+at+massed+bands.webp" alt="massed bands performance" onerror="this.src='https://via.placeholder.com/300x180?text=bands'">
+                </div>
             </div>
-            <div class="image-strip">
-                <!-- using your images (all from /images/) -->
-                <img src="images/0N7A2922.webp" alt="crowd with flags" onerror="this.src='https://via.placeholder.com/300x180?text=historic'">
-                <img src="images/27f22a83-863.webp" alt="drum major" onerror="this.src='https://via.placeholder.com/300x180?text=drum+major'">
-                <img src="images/drummajor.webp" alt="drum major solo" onerror="this.src='https://via.placeholder.com/300x180?text=drumming'">
-                <img src="images/emma+at+massed+bands.webp" alt="massed bands performance" onerror="this.src='https://via.placeholder.com/300x180?text=bands'">
+
+            <!-- GALLERY block -->
+            <div class="story-gallery">
+                <h3><i class="fas fa-camera-retro"></i> Moments from the games</h3>
+                <div class="gallery-grid">
+                    <img src="images/2017_GHG-Program+Cover.webp" alt="program cover" onerror="this.src='https://via.placeholder.com/200x150?text=program'">
+                    <img src="images/DSC_6328.webp" alt="heavy events" onerror="this.src='https://via.placeholder.com/200x150?text=heavy'">
+                    <img src="images/off+ceremony.webp" alt="opening ceremonies" onerror="this.src='https://via.placeholder.com/200x150?text=ceremony'">
+                    <img src="images/piobaireachd.webp" alt="piper" onerror="this.src='https://via.placeholder.com/200x150?text=piper'">
+                    <img src="images/fiddling2.webp" alt="fiddler" onerror="this.src='https://via.placeholder.com/200x150?text=fiddle'">
+                    <img src="images/mackenzie+king.webp" alt="historical" onerror="this.src='https://via.placeholder.com/200x150?text=highland'">
+                </div>
+            </div>
+
+            <!-- volunteer box - email removed -->
+            <div class="volunteer-box">
+                <h3><i class="fas fa-heart"></i> Become part of the tradition</h3>
+                <p>Volunteers and vendors are the backbone of the Games. Reach out to join us.</p>
+                <!-- email address completely removed -->
             </div>
         </div>
 
-        <!-- GALLERY block (pure imagery, no links or pdf) -->
-        <div class="story-gallery">
-            <h3><i class="fas fa-camera-retro"></i> Moments from the games</h3>
-            <div class="gallery-grid">
-                <img src="images/2017_GHG-Program+Cover.webp" alt="program cover" onerror="this.src='https://via.placeholder.com/200x150?text=program'">
-                <img src="images/DSC_6328.webp" alt="heavy events" onerror="this.src='https://via.placeholder.com/200x150?text=heavy'">
-                <img src="images/off+ceremony.webp" alt="opening ceremonies" onerror="this.src='https://via.placeholder.com/200x150?text=ceremony'">
-                <img src="images/piobaireachd.webp" alt="piper" onerror="this.src='https://via.placeholder.com/200x150?text=piper'">
-                <img src="images/fiddling2.webp" alt="fiddler" onerror="this.src='https://via.placeholder.com/200x150?text=fiddle'">
-                <img src="images/mackenzie+king.webp" alt="historical" onerror="this.src='https://via.placeholder.com/200x150?text=highland'">
-            </div>
-        </div>
-
-        <!-- volunteer / contact box (no pdf, no schedule) -->
-        <div class="volunteer-box">
-            <h3><i class="fas fa-heart"></i> Become part of the tradition</h3>
-            <p>Volunteers and vendors are the backbone of the Games. Reach out to join us.</p>
-            <p style="margin-top:1.2rem; font-size:1.4rem;"><i class="fas fa-envelope"></i> volunteer@ontariohighlandgames.ca</p>
-        </div>
-
-        <!-- simple footer – NO image list, NO "Get Glengarry in your inbox" -->
+        <!-- simple footer -->
         <div class="footer-note">
-            <p>© Ontario Highland Games · Glengarry County</p>
-            <!-- The long image list has been removed completely -->
+            <p>© Glengarry Highland Games · Glengarry County</p>
         </div>
     </div>
 
-    <!-- small script to ensure logo home link works (points to index.html) 
-         and nav highlights properly (already done via class="active") -->
+    <!-- JavaScript to handle navigation and logo home button -->
     <script>
         (function() {
-            // logo link goes to home (index.html) – but that's already in href
-            // optional: make sure if we are on about, home link is not active (already handled by active class on about)
-            // no other js needed
+            const homePage = document.getElementById('home-page');
+            const aboutPage = document.getElementById('about-page');
+            const navHome = document.getElementById('nav-home');
+            const navAbout = document.getElementById('nav-about');
+            const homeLogo = document.getElementById('home-logo-link');
+
+            function setActivePage(page) {
+                if (page === 'home') {
+                    homePage.style.display = 'block';
+                    aboutPage.style.display = 'none';
+                    navHome.classList.add('active');
+                    navAbout.classList.remove('active');
+                } else {
+                    homePage.style.display = 'none';
+                    aboutPage.style.display = 'block';
+                    navAbout.classList.add('active');
+                    navHome.classList.remove('active');
+                }
+            }
+
+            // Set initial state: about page visible, home hidden
+            setActivePage('about');
+
+            // Event listeners for navigation
+            navHome.addEventListener('click', function(e) {
+                e.preventDefault();
+                setActivePage('home');
+            });
+
+            navAbout.addEventListener('click', function(e) {
+                e.preventDefault();
+                setActivePage('about');
+            });
+
+            // Logo home button
+            homeLogo.addEventListener('click', function(e) {
+                e.preventDefault();
+                setActivePage('home');
+            });
         })();
     </script>
 </body>
