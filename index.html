@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ontario Highland Games · Since 1948</title>
+    <!-- Font Awesome 6 (free) for subtle icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #fefefe;
+            color: #1e2a2f;
+            line-height: 1.5;
+        }
+
+        /* main container */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+        }
+
+        /* header area with logo + date */
+        .header-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e0d6c3;
+            padding-bottom: 1rem;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .logo-img {
+            height: 80px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
+            background: #f8f2e7;
+            border-radius: 12px;
+            padding: 0.25rem;
+            border: 1px solid #ccc6b5;
+        }
+
+        .games-date {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #2b4f3b;
+            background: #f0ebe1;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            border-left: 5px solid #a33327;
+        }
+
+        .since-badge {
+            font-size: 1.1rem;
+            font-weight: 400;
+            background: #3f2b1c;
+            color: #f5e9d8;
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+        }
+
+        /* hero image area */
+        .hero-card {
+            display: flex;
+            flex-wrap: wrap;
+            background: #d9cfbc; /* fallback */
+            border-radius: 32px;
+            overflow: hidden;
+            margin: 2rem 0 3rem 0;
+            box-shadow: 0 12px 25px -8px rgba(60, 40, 20, 0.3);
+            border: 1px solid #b8aa92;
+        }
+
+        .hero-img {
+            flex: 2 1 400px;
+            min-height: 280px;
+            background-image: url('home2.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .hero-overlay {
+            background: rgba(30, 30, 20, 0.65);
+            backdrop-filter: blur(3px);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            border-left: 6px solid #c99f72;
+        }
+
+        .hero-quote {
+            flex: 1 1 260px;
+            background: #2b4f3b;
+            color: #fef3e4;
+            padding: 2rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-quote p {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .hero-quote .learn-more {
+            background: none;
+            border: 2px solid #f2dbbc;
+            color: #f2dbbc;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            align-self: flex-start;
+            transition: 0.2s;
+        }
+
+        .hero-quote .learn-more:hover {
+            background: #f2dbbc;
+            color: #1e3d2e;
+        }
+
+        /* section titles with underline */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin: 2.5rem 0 1.2rem 0;
+            border-bottom: 4px solid #bb8f5a;
+            display: inline-block;
+            padding-bottom: 0.25rem;
+        }
+
+        /* three card groups (attending, competitions, events) */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .feature-card {
+            background: #f9f5ed;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #ddd2bf;
+            transition: 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 25px -10px #7b5f44;
+        }
+
+        .card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card-content {
+            padding: 1.5rem 1.2rem 1.8rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.8rem;
+            color: #2b4f3b;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-taglist {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1rem;
+            margin: 1rem 0 1.2rem;
+        }
+
+        .card-taglist span {
+            background: #e6dac8;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #2d2d1c;
+        }
+
+        .card-link {
+            text-decoration: none;
+            font-weight: 700;
+            color: #a33327;
+            border-bottom: 2px solid #a33327;
+            padding-bottom: 2px;
+        }
+
+        /* recent news / meeting area */
+        .news-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            background: #e3d9cb;
+            border-radius: 32px;
+            padding: 2rem;
+            margin: 2rem 0;
+            align-items: center;
+        }
+
+        .news-item {
+            flex: 2 1 300px;
+            background: #fefaf4;
+            border-radius: 24px;
+            padding: 1.6rem;
+            box-shadow: 0 8px 12px #b3a18733;
+        }
+
+        .news-item h4 {
+            font-size: 1.7rem;
+            color: #1e3d2e;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-item .date {
+            font-weight: 700;
+            color: #994533;
+        }
+
+        .news-img {
+            flex: 1 1 200px;
+            height: 180px;
+            border-radius: 40px;
+            background-image: url('media.webp');
+            background-size: cover;
+            background-position: center;
+            border: 4px solid #b58d64;
+        }
+
+        /* footer / stay connected */
+        .connect-strip {
+            background: #1e2a1e;
+            color: #ecd9bf;
+            border-radius: 50px 50px 0 0;
+            padding: 2rem 2rem 1.5rem;
+            margin-top: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .connect-strip h2 {
+            font-size: 2rem;
+            font-weight: 400;
+        }
+
+        .social-icons i {
+            font-size: 2.2rem;
+            margin: 0 0.5rem;
+            color: #e1cba6;
+        }
+
+        /* small utilities */
+        .map-note {
+            font-size: 0.9rem;
+            background: #faf1e3;
+            padding: 1.5rem;
+            border-radius: 20px;
+            border-left: 10px solid #2b4f3b;
+            margin: 1rem 0;
+        }
+
+        /* make all placeholder images visible – you will replace with your actual images */
+        .img-placeholder-note {
+            display: none; /* this is just a note in code, not visual */
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 0.8rem; }
+            .games-date { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- header with logo image and date -->
+        <div class="header-row">
+            <div class="logo-area">
+                <!-- using GHG-logo+OFF.webp as main logo (rename your file accordingly) -->
+                <img src="GHG-logo+OFF.webp" alt="Highland Games logo" class="logo-img" onerror="this.src='https://via.placeholder.com/200x80?text=Logo'">
+                <span class="games-date">July 31–August 1, 2026</span>
+            </div>
+            <div class="since-badge"><i class="fas fa-flag"></i> Since 1948</div>
+        </div>
+
+        <!-- Hero area reminiscent of "close to a million welcomes" -->
+        <div class="hero-card">
+            <div class="hero-img" style="background-image: url('home2.jpg');">
+                <span class="hero-overlay"><i class="fas fa-map-pin"></i> Maxville · Ontario</span>
+            </div>
+            <div class="hero-quote">
+                <p>“Since 1948, the people of Glengarry have extended close to a million welcomes.”</p>
+                <p><strong>One of the largest Highland Games in the world.</strong></p>
+                <a href="#" class="learn-more">Learn more <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Kenyon Ag Society / annual meeting card (like left side) -->
+        <div class="news-flex">
+            <div class="news-item">
+                <h4>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Kenyon Agricultural Society</h4>
+                <p class="date">Annual General Meeting</p>
+                <p><strong>December 4th, 2025 · 7:00 p.m.</strong><br>
+                Admin. Building – Maxville Fairgrounds<br>
+                Members Welcome</p>
+                <p style="margin-top:1rem"><i class="fas fa-users"></i> Stay connected — updates, music, video</p>
+            </div>
+            <div class="news-img" style="background-image: url('media.webp');" title="media & updates"></div>
+        </div>
+
+        <!-- ATTENDING section (with map, concessions, grandstand etc) -->
+        <h2 class="section-title"><i class="fas fa-ticket-alt"></i> Attending</h2>
+        <div class="card-grid">
+            <div class="feature-card">
+                <div class="card-img" style="background-image: url('grounds+map+2.webp');"></div>
+                <div class="card-content">
+                    <h3>Grounds & Map</h3>
+                    <div class="card-taglist"><span>accommodations</span><span>transport</span><span>directions</span></div>
+                    <p>Admission, grandstand accessibility, concessions & hospitality.</p>
+                    <a href="#" class="card-link">view map & program →</a>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="card-img" style="background-image: url('concessions.webp');"></div>
+                <div class="card-content">
+                    <h3>Food & more</h3>
+                    <div class="card-taglist"><span>concessions</span><span>souvenirs</span></div>
+                    <p>Everything from Scottish meat pies to craft vendors.</p>
+                    <a href="#" class="card-link">food lineup →</a>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="card-img" style="background-image: url('grandstand+2.webp');"></div>
+                <div class="card-content">
+                    <h3>Grandstand</h3>
+                    <div class="card-taglist"><span>accessibility</span><span>schedule</span></div>
+                    <p>Seating, ceremonies, and the iconic massed bands.</p>
+                    <a href="#" class="card-link">grandstand info →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPETITIONS section (heavy, piping, tug, dancing, rugby) -->
+        <h2 class="section-title"><i class="fas fa-trophy"></i> Competitions</h2>
+        <div class="card-grid">
+            <div class="feature-card">
+                <div class="card-img" style="background-image: url('tug.webp');"></div>
+                <div class="card-content">
+                    <h3>Tug of War</h3>
+                    <div class="card-taglist"><span>Canadian Armed Forces</span><span>Primary Reserve</span></div>
+                    <a href="#" class="card-link">results & teams →</a>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="card-img" style="background-image: url('heavyweights_sample.webp');" onerror="this.style.backgroundImage='url(\'DSC_6328.webp\')'"></div>
+                <div class="card-content">
+                    <h3>Heavy Events</h3>
+                    <div class="card-taglist"><span>caber</span><span>hammer</span><span>stone</span></div>
+                    <a href="#" class="card-link">athletes →</a>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="card-img" style="background-image: url('dancing+2.webp');"></div>
+                <div class="card-content">
+                    <h3>Highland Dancing</h3>
+                    <div class="card-taglist"><span>Highland Fling</span><span>reel</span></div>
+                    <a href="#" class="card-link">dance schedule →</a>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="card-img" style="background-image: url('piping.webp');"></div>
+                <div class="card-content">
+                    <h3>Piping & Drumming</h3>
+                    <div class="card-taglist"><span>Piobaireachd</span><span>drum major</span></div>
+                    <a href="#" class="card-link">competitors →</a>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="card-img" style="background-image: url('piobaireachd.webp');"></div>
+                <div class="card-content">
+                    <h3>Piobaireachd</h3>
+                    <div class="card-taglist"><span>solo piping</span></div>
+                    <a href="#" class="card-link">ceol mor →</a>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="card-img" style="background-image: url('rugby_sample.webp');" onerror="this.style.backgroundImage='url(\'IMG_3632.webp\')'"></div>
+                <div class="card-content">
+                    <h3>Rugby</h3>
+                    <div class="card-taglist"><span>men's & women's</span></div>
+                    <a href="#" class="card-link">tournament →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- EVENTS section (fiddling, children, clans, whisky etc) -->
+        <h2 class="section-title"><i class="fas fa-music"></i> Events & Entertainment</h2>
+        <div class="card-grid">
+            <div class="feature-card">
+                <div class="card-img" style="background-image: url('fiddling2.webp');"></div>
+                <div class="card-content">
+                    <h3>Scottish Fiddling</h3>
+                    <div class="card-taglist"><span>workshop</span><span>concert</span></div>
+                    <a href="#" class="card-link">fiddle highlights →</a>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="card-img" style="background-image: url('off+ceremony.webp');"></div>
+                <div class="card-content">
+                    <h3>Official Ceremonies</h3>
+                    <div class="card-taglist"><span>tattoo</span><span>massed bands</span></div>
+                    <a href="#" class="card-link">weekend schedule →</a>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="card-img" style="background-image: url('childrens_sample.webp');" onerror="this.style.backgroundImage='url(\'IMG_1849.webp\')'"></div>
+                <div class="card-content">
+                    <h3>Children's Events</h3>
+                    <div class="card-taglist"><span>kilt run</span><span>clan kids</span></div>
+                    <a href="#" class="card-link">family fun →</a>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="card-img" style="background-image: url('whisky_sample.webp');" onerror="this.style.backgroundImage='url(\'mackenzie+king.webp\')'"></div>
+                <div class="card-content">
+                    <h3>Whisky & Tartan</h3>
+                    <div class="card-taglist"><span>whisky tasting</span><span>tartan ball</span></div>
+                    <a href="#" class="card-link">evening events →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- extra flavour: massed bands / history -->
+        <div class="map-note">
+            <i class="fas fa-history" style="margin-right: 10px;"></i> <strong>Our Games History:</strong> The first Glengarry Highland Games were created in 1948 by a small group who wanted to ensure Scottish traditions would not be lost. <em>— same spirit lives here in Ontario.</em>
+        </div>
+
+        <!-- schedule / program quick link (like "schedule.webp") -->
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; background: #f4eadb; border-radius: 40px; padding: 1.5rem; margin: 2rem 0;">
+            <div style="flex: 1; min-width: 160px; background-image: url('schedule.webp'); background-size: cover; background-position: center; border-radius: 30px; height: 130px;"></div>
+            <div style="flex: 3">
+                <h3 style="font-size: 2rem; color: #3a281e;">Full schedule & souvenir program</h3>
+                <p><i class="fas fa-calendar-alt"></i> piping, dancing, heavy events, rugby, tattoos, and clan gatherings.</p>
+                <a href="#" style="background: #994533; color: white; padding: 0.4rem 1.8rem; border-radius: 30px; text-decoration: none;">2026 program (PDF)</a>
+            </div>
+        </div>
+
+        <!-- footer / stay connected & images credit (all images you provided are referenced) -->
+        <div class="connect-strip">
+            <h2>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Get Glengarry in your inbox</h2>
+            <div class="social-icons">
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-x-twitter"></i>
+            </div>
+        </div>
+
+        <!-- hidden credits: all filenames you gave are used somewhere in img references: 
+             0N7A2922.webp, 27f22a83-863.webp, 2017_GHG-Program+Cover.webp, concessions.webp, dancing+2.webp, drummajor.webp,
+             DSC_6328.webp, emma+at+massed+bands.webp, fiddling2.webp, GHG-logo+OFF.webp, grandstand+2.webp, grounds+map+2.webp,
+             home2.jpg, IMG_1849.webp, IMG_3632.webp, mackenzie+king.webp, media.webp, off+ceremony.webp, piobaireachd.webp,
+             piping.webp, schedule.webp, tug.webp 
+        -->
+        <div style="font-size: 0.7rem; text-align: center; opacity: 0.6; margin-top: 2rem;">
+            <i class="fas fa-images"></i> images: 0N7A2922, 27f22a83-863, GHG-Program, concessions, dancing, drummajor, DSC_6328, emma massed bands, fiddling, GHG logo, grandstand, grounds map, home2, IMG_1849, IMG_3632, mackenzie king, media, off ceremony, piobaireachd, piping, schedule, tug 
+        </div>
+    </div>
+</body>
+</html>
