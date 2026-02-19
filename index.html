@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ontario Highland Games · Since 1948</title>
-    <!-- Font Awesome 6 (free) for subtle icons -->
+    <title>Ontario Highland Games · Home</title>
+    <!-- Font Awesome 6 (free) for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -27,7 +27,7 @@
             padding: 1.5rem 2rem;
         }
 
-        /* header area with logo + date */
+        /* === HEADER with logo as home button === */
         .header-row {
             display: flex;
             flex-wrap: wrap;
@@ -38,21 +38,28 @@
             padding-bottom: 1rem;
         }
 
-        .logo-area {
+        .logo-home {
             display: flex;
             align-items: center;
             gap: 1rem;
-            flex-wrap: wrap;
+        }
+
+        .logo-link {
+            display: inline-block;
+            transition: opacity 0.2s;
+        }
+        .logo-link:hover {
+            opacity: 0.8;
         }
 
         .logo-img {
-            height: 80px;
+            height: 85px;
             width: auto;
-            max-width: 200px;
+            max-width: 220px;
             object-fit: contain;
             background: #f8f2e7;
-            border-radius: 12px;
-            padding: 0.25rem;
+            border-radius: 16px;
+            padding: 0.3rem;
             border: 1px solid #ccc6b5;
         }
 
@@ -76,11 +83,31 @@
             border-radius: 30px;
         }
 
-        /* hero image area */
+        /* navigation */
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            font-weight: 600;
+            margin: 1rem 0 0 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2b4f3b;
+            font-size: 1.3rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            transition: 0.15s;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            background: #2b4f3b;
+            color: #f3e9d9;
+        }
+
+        /* hero */
         .hero-card {
             display: flex;
             flex-wrap: wrap;
-            background: #d9cfbc; /* fallback */
+            background: #d9cfbc;
             border-radius: 32px;
             overflow: hidden;
             margin: 2rem 0 3rem 0;
@@ -91,7 +118,6 @@
         .hero-img {
             flex: 2 1 400px;
             min-height: 280px;
-            background-image: url('home2.jpg');
             background-size: cover;
             background-position: center 30%;
             display: flex;
@@ -143,7 +169,7 @@
             color: #1e3d2e;
         }
 
-        /* section titles with underline */
+        /* section titles */
         .section-title {
             font-size: 2.2rem;
             font-weight: 600;
@@ -153,7 +179,7 @@
             padding-bottom: 0.25rem;
         }
 
-        /* three card groups (attending, competitions, events) */
+        /* card grids */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -215,7 +241,7 @@
             padding-bottom: 2px;
         }
 
-        /* recent news / meeting area */
+        /* news / meeting area */
         .news-flex {
             display: flex;
             flex-wrap: wrap;
@@ -250,13 +276,43 @@
             flex: 1 1 200px;
             height: 180px;
             border-radius: 40px;
-            background-image: url('media.webp');
             background-size: cover;
             background-position: center;
             border: 4px solid #b58d64;
         }
 
-        /* footer / stay connected */
+        /* about page specific */
+        .about-block {
+            background: #f7efe3;
+            border-radius: 48px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        .about-text {
+            flex: 2 1 300px;
+        }
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: #2b4f3b;
+        }
+        .about-gallery {
+            flex: 1 1 200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .about-gallery img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 30px;
+            border: 3px solid #c2aa86;
+        }
+
         .connect-strip {
             background: #1e2a1e;
             color: #ecd9bf;
@@ -280,9 +336,7 @@
             color: #e1cba6;
         }
 
-        /* small utilities */
         .map-note {
-            font-size: 0.9rem;
             background: #faf1e3;
             padding: 1.5rem;
             border-radius: 20px;
@@ -290,9 +344,12 @@
             margin: 1rem 0;
         }
 
-        /* make all placeholder images visible – you will replace with your actual images */
-        .img-placeholder-note {
-            display: none; /* this is just a note in code, not visual */
+        /* simple page toggle */
+        .page {
+            display: none;
+        }
+        .page.active-page {
+            display: block;
         }
 
         @media (max-width: 600px) {
@@ -303,179 +360,224 @@
 </head>
 <body>
     <div class="container">
-        <!-- header with logo image and date -->
+        <!-- header with logo home button (top left) and navigation -->
         <div class="header-row">
-            <div class="logo-area">
-                <!-- using GHG-logo+OFF.webp as main logo (rename your file accordingly) -->
-                <img src="GHG-logo+OFF.webp" alt="Highland Games logo" class="logo-img" onerror="this.src='https://via.placeholder.com/200x80?text=Logo'">
+            <div class="logo-home">
+                <!-- logo is now a home button -->
+                <a href="#" class="logo-link" id="home-logo-link">
+                    <img src="images/GHG-logo+OFF.webp" alt="Highland Games logo" class="logo-img" onerror="this.src='https://via.placeholder.com/220x85?text=Logo'">
+                </a>
                 <span class="games-date">July 31–August 1, 2026</span>
             </div>
             <div class="since-badge"><i class="fas fa-flag"></i> Since 1948</div>
         </div>
 
-        <!-- Hero area reminiscent of "close to a million welcomes" -->
-        <div class="hero-card">
-            <div class="hero-img" style="background-image: url('home2.jpg');">
-                <span class="hero-overlay"><i class="fas fa-map-pin"></i> Maxville · Ontario</span>
-            </div>
-            <div class="hero-quote">
-                <p>“Since 1948, the people of Glengarry have extended close to a million welcomes.”</p>
-                <p><strong>One of the largest Highland Games in the world.</strong></p>
-                <a href="#" class="learn-more">Learn more <i class="fas fa-arrow-right"></i></a>
-            </div>
+        <!-- navigation links (home / about) -->
+        <div class="nav-links">
+            <a href="#" id="nav-home" class="active">Home</a>
+            <a href="#" id="nav-about">About</a>
         </div>
 
-        <!-- Kenyon Ag Society / annual meeting card (like left side) -->
-        <div class="news-flex">
-            <div class="news-item">
-                <h4>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Kenyon Agricultural Society</h4>
-                <p class="date">Annual General Meeting</p>
-                <p><strong>December 4th, 2025 · 7:00 p.m.</strong><br>
-                Admin. Building – Maxville Fairgrounds<br>
-                Members Welcome</p>
-                <p style="margin-top:1rem"><i class="fas fa-users"></i> Stay connected — updates, music, video</p>
+        <!-- HOME PAGE (visible by default) -->
+        <div id="home-page" class="page active-page">
+            <!-- Hero area -->
+            <div class="hero-card">
+                <div class="hero-img" style="background-image: url('images/home2.jpg');">
+                    <span class="hero-overlay"><i class="fas fa-map-pin"></i> Maxville · Ontario</span>
+                </div>
+                <div class="hero-quote">
+                    <p>“Since 1948, the people of Glengarry have extended close to a million welcomes.”</p>
+                    <p><strong>One of the largest Highland Games in the world.</strong></p>
+                    <a href="#" class="learn-more">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
-            <div class="news-img" style="background-image: url('media.webp');" title="media & updates"></div>
-        </div>
 
-        <!-- ATTENDING section (with map, concessions, grandstand etc) -->
-        <h2 class="section-title"><i class="fas fa-ticket-alt"></i> Attending</h2>
-        <div class="card-grid">
-            <div class="feature-card">
-                <div class="card-img" style="background-image: url('grounds+map+2.webp');"></div>
-                <div class="card-content">
-                    <h3>Grounds & Map</h3>
-                    <div class="card-taglist"><span>accommodations</span><span>transport</span><span>directions</span></div>
-                    <p>Admission, grandstand accessibility, concessions & hospitality.</p>
-                    <a href="#" class="card-link">view map & program →</a>
+            <!-- Kenyon Ag Society meeting -->
+            <div class="news-flex">
+                <div class="news-item">
+                    <h4>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Kenyon Agricultural Society</h4>
+                    <p class="date">Annual General Meeting</p>
+                    <p><strong>December 4th, 2025 · 7:00 p.m.</strong><br>
+                    Admin. Building – Maxville Fairgrounds<br>
+                    Members Welcome</p>
+                    <p style="margin-top:1rem"><i class="fas fa-users"></i> Stay connected — updates, music, video</p>
                 </div>
+                <div class="news-img" style="background-image: url('images/media.webp');" title="media & updates"></div>
             </div>
-            <div class="feature-card">
-                <div class="card-img" style="background-image: url('concessions.webp');"></div>
-                <div class="card-content">
-                    <h3>Food & more</h3>
-                    <div class="card-taglist"><span>concessions</span><span>souvenirs</span></div>
-                    <p>Everything from Scottish meat pies to craft vendors.</p>
-                    <a href="#" class="card-link">food lineup →</a>
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="card-img" style="background-image: url('grandstand+2.webp');"></div>
-                <div class="card-content">
-                    <h3>Grandstand</h3>
-                    <div class="card-taglist"><span>accessibility</span><span>schedule</span></div>
-                    <p>Seating, ceremonies, and the iconic massed bands.</p>
-                    <a href="#" class="card-link">grandstand info →</a>
-                </div>
-            </div>
-        </div>
 
-        <!-- COMPETITIONS section (heavy, piping, tug, dancing, rugby) -->
-        <h2 class="section-title"><i class="fas fa-trophy"></i> Competitions</h2>
-        <div class="card-grid">
-            <div class="feature-card">
-                <div class="card-img" style="background-image: url('tug.webp');"></div>
-                <div class="card-content">
-                    <h3>Tug of War</h3>
-                    <div class="card-taglist"><span>Canadian Armed Forces</span><span>Primary Reserve</span></div>
-                    <a href="#" class="card-link">results & teams →</a>
+            <!-- ATTENDING section -->
+            <h2 class="section-title"><i class="fas fa-ticket-alt"></i> Attending</h2>
+            <div class="card-grid">
+                <div class="feature-card">
+                    <div class="card-img" style="background-image: url('images/grounds+map+2.webp');"></div>
+                    <div class="card-content">
+                        <h3>Grounds & Map</h3>
+                        <div class="card-taglist"><span>accommodations</span><span>transport</span><span>directions</span></div>
+                        <p>Admission, grandstand accessibility, concessions & hospitality.</p>
+                        <a href="#" class="card-link">view map & program →</a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-img" style="background-image: url('images/concessions.webp');"></div>
+                    <div class="card-content">
+                        <h3>Food & more</h3>
+                        <div class="card-taglist"><span>concessions</span><span>souvenirs</span></div>
+                        <p>Everything from Scottish meat pies to craft vendors.</p>
+                        <a href="#" class="card-link">food lineup →</a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-img" style="background-image: url('images/grandstand+2.webp');"></div>
+                    <div class="card-content">
+                        <h3>Grandstand</h3>
+                        <div class="card-taglist"><span>accessibility</span><span>schedule</span></div>
+                        <p>Seating, ceremonies, and the iconic massed bands.</p>
+                        <a href="#" class="card-link">grandstand info →</a>
+                    </div>
                 </div>
             </div>
-            <div class="feature-card">
-                <div class="card-img" style="background-image: url('heavyweights_sample.webp');" onerror="this.style.backgroundImage='url(\'DSC_6328.webp\')'"></div>
-                <div class="card-content">
-                    <h3>Heavy Events</h3>
-                    <div class="card-taglist"><span>caber</span><span>hammer</span><span>stone</span></div>
-                    <a href="#" class="card-link">athletes →</a>
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="card-img" style="background-image: url('dancing+2.webp');"></div>
-                <div class="card-content">
-                    <h3>Highland Dancing</h3>
-                    <div class="card-taglist"><span>Highland Fling</span><span>reel</span></div>
-                    <a href="#" class="card-link">dance schedule →</a>
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="card-img" style="background-image: url('piping.webp');"></div>
-                <div class="card-content">
-                    <h3>Piping & Drumming</h3>
-                    <div class="card-taglist"><span>Piobaireachd</span><span>drum major</span></div>
-                    <a href="#" class="card-link">competitors →</a>
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="card-img" style="background-image: url('piobaireachd.webp');"></div>
-                <div class="card-content">
-                    <h3>Piobaireachd</h3>
-                    <div class="card-taglist"><span>solo piping</span></div>
-                    <a href="#" class="card-link">ceol mor →</a>
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="card-img" style="background-image: url('rugby_sample.webp');" onerror="this.style.backgroundImage='url(\'IMG_3632.webp\')'"></div>
-                <div class="card-content">
-                    <h3>Rugby</h3>
-                    <div class="card-taglist"><span>men's & women's</span></div>
-                    <a href="#" class="card-link">tournament →</a>
-                </div>
-            </div>
-        </div>
 
-        <!-- EVENTS section (fiddling, children, clans, whisky etc) -->
-        <h2 class="section-title"><i class="fas fa-music"></i> Events & Entertainment</h2>
-        <div class="card-grid">
-            <div class="feature-card">
-                <div class="card-img" style="background-image: url('fiddling2.webp');"></div>
-                <div class="card-content">
-                    <h3>Scottish Fiddling</h3>
-                    <div class="card-taglist"><span>workshop</span><span>concert</span></div>
-                    <a href="#" class="card-link">fiddle highlights →</a>
+            <!-- COMPETITIONS -->
+            <h2 class="section-title"><i class="fas fa-trophy"></i> Competitions</h2>
+            <div class="card-grid">
+                <div class="feature-card">
+                    <div class="card-img" style="background-image: url('images/tug.webp');"></div>
+                    <div class="card-content">
+                        <h3>Tug of War</h3>
+                        <div class="card-taglist"><span>Canadian Armed Forces</span><span>Primary Reserve</span></div>
+                        <a href="#" class="card-link">results & teams →</a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-img" style="background-image: url('images/DSC_6328.webp');"></div>
+                    <div class="card-content">
+                        <h3>Heavy Events</h3>
+                        <div class="card-taglist"><span>caber</span><span>hammer</span><span>stone</span></div>
+                        <a href="#" class="card-link">athletes →</a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-img" style="background-image: url('images/dancing+2.webp');"></div>
+                    <div class="card-content">
+                        <h3>Highland Dancing</h3>
+                        <div class="card-taglist"><span>Highland Fling</span><span>reel</span></div>
+                        <a href="#" class="card-link">dance schedule →</a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-img" style="background-image: url('images/piping.webp');"></div>
+                    <div class="card-content">
+                        <h3>Piping & Drumming</h3>
+                        <div class="card-taglist"><span>Piobaireachd</span><span>drum major</span></div>
+                        <a href="#" class="card-link">competitors →</a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-img" style="background-image: url('images/piobaireachd.webp');"></div>
+                    <div class="card-content">
+                        <h3>Piobaireachd</h3>
+                        <div class="card-taglist"><span>solo piping</span></div>
+                        <a href="#" class="card-link">ceol mor →</a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-img" style="background-image: url('images/IMG_3632.webp');"></div>
+                    <div class="card-content">
+                        <h3>Rugby</h3>
+                        <div class="card-taglist"><span>men's & women's</span></div>
+                        <a href="#" class="card-link">tournament →</a>
+                    </div>
                 </div>
             </div>
-            <div class="feature-card">
-                <div class="card-img" style="background-image: url('off+ceremony.webp');"></div>
-                <div class="card-content">
-                    <h3>Official Ceremonies</h3>
-                    <div class="card-taglist"><span>tattoo</span><span>massed bands</span></div>
-                    <a href="#" class="card-link">weekend schedule →</a>
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="card-img" style="background-image: url('childrens_sample.webp');" onerror="this.style.backgroundImage='url(\'IMG_1849.webp\')'"></div>
-                <div class="card-content">
-                    <h3>Children's Events</h3>
-                    <div class="card-taglist"><span>kilt run</span><span>clan kids</span></div>
-                    <a href="#" class="card-link">family fun →</a>
-                </div>
-            </div>
-            <div class="feature-card">
-                <div class="card-img" style="background-image: url('whisky_sample.webp');" onerror="this.style.backgroundImage='url(\'mackenzie+king.webp\')'"></div>
-                <div class="card-content">
-                    <h3>Whisky & Tartan</h3>
-                    <div class="card-taglist"><span>whisky tasting</span><span>tartan ball</span></div>
-                    <a href="#" class="card-link">evening events →</a>
-                </div>
-            </div>
-        </div>
 
-        <!-- extra flavour: massed bands / history -->
-        <div class="map-note">
-            <i class="fas fa-history" style="margin-right: 10px;"></i> <strong>Our Games History:</strong> The first Glengarry Highland Games were created in 1948 by a small group who wanted to ensure Scottish traditions would not be lost. <em>— same spirit lives here in Ontario.</em>
-        </div>
-
-        <!-- schedule / program quick link (like "schedule.webp") -->
-        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; background: #f4eadb; border-radius: 40px; padding: 1.5rem; margin: 2rem 0;">
-            <div style="flex: 1; min-width: 160px; background-image: url('schedule.webp'); background-size: cover; background-position: center; border-radius: 30px; height: 130px;"></div>
-            <div style="flex: 3">
-                <h3 style="font-size: 2rem; color: #3a281e;">Full schedule & souvenir program</h3>
-                <p><i class="fas fa-calendar-alt"></i> piping, dancing, heavy events, rugby, tattoos, and clan gatherings.</p>
-                <a href="#" style="background: #994533; color: white; padding: 0.4rem 1.8rem; border-radius: 30px; text-decoration: none;">2026 program (PDF)</a>
+            <!-- EVENTS section -->
+            <h2 class="section-title"><i class="fas fa-music"></i> Events & Entertainment</h2>
+            <div class="card-grid">
+                <div class="feature-card">
+                    <div class="card-img" style="background-image: url('images/fiddling2.webp');"></div>
+                    <div class="card-content">
+                        <h3>Scottish Fiddling</h3>
+                        <div class="card-taglist"><span>workshop</span><span>concert</span></div>
+                        <a href="#" class="card-link">fiddle highlights →</a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-img" style="background-image: url('images/off+ceremony.webp');"></div>
+                    <div class="card-content">
+                        <h3>Official Ceremonies</h3>
+                        <div class="card-taglist"><span>tattoo</span><span>massed bands</span></div>
+                        <a href="#" class="card-link">weekend schedule →</a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-img" style="background-image: url('images/IMG_1849.webp');"></div>
+                    <div class="card-content">
+                        <h3>Children's Events</h3>
+                        <div class="card-taglist"><span>kilt run</span><span>clan kids</span></div>
+                        <a href="#" class="card-link">family fun →</a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="card-img" style="background-image: url('images/mackenzie+king.webp');"></div>
+                    <div class="card-content">
+                        <h3>Whisky & Tartan</h3>
+                        <div class="card-taglist"><span>whisky tasting</span><span>tartan ball</span></div>
+                        <a href="#" class="card-link">evening events →</a>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <!-- footer / stay connected & images credit (all images you provided are referenced) -->
+            <!-- history note & schedule -->
+            <div class="map-note">
+                <i class="fas fa-history" style="margin-right: 10px;"></i> <strong>Our Games History:</strong> The first Glengarry Highland Games were created in 1948 by a small group who wanted to ensure Scottish traditions would not be lost. <em>— same spirit lives here in Ontario.</em>
+            </div>
+            <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; background: #f4eadb; border-radius: 40px; padding: 1.5rem; margin: 2rem 0;">
+                <div style="flex: 1; min-width: 160px; background-image: url('images/schedule.webp'); background-size: cover; background-position: center; border-radius: 30px; height: 130px;"></div>
+                <div style="flex: 3">
+                    <h3 style="font-size: 2rem; color: #3a281e;">Full schedule & souvenir program</h3>
+                    <p><i class="fas fa-calendar-alt"></i> piping, dancing, heavy events, rugby, tattoos, and clan gatherings.</p>
+                    <a href="#" style="background: #994533; color: white; padding: 0.4rem 1.8rem; border-radius: 30px; text-decoration: none;">2026 program (PDF)</a>
+                </div>
+            </div>
+        </div> <!-- end home page -->
+
+        <!-- ABOUT PAGE (hidden by default) -->
+        <div id="about-page" class="page">
+            <div class="about-block">
+                <div class="about-text">
+                    <h2>About the Ontario Highland Games</h2>
+                    <p style="font-size:1.2rem; margin: 1rem 0;">Since 1948, the Glengarry Highland Games have set the standard. Our Ontario festival carries that torch — celebrating Scottish culture, athletics, music, and community.</p>
+                    <p>We bring together thousands of visitors each year for a weekend of pageantry: massed bands, heavyweight competitions, highland dancing, fiddling, and family fun. The Games are organized by the Kenyon Agricultural Society, a volunteer-driven nonprofit dedicated to preserving Scottish heritage in the heart of Ontario.</p>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Maxville Fairgrounds</strong> — 20 Fair Street, Maxville, ON</p>
+                </div>
+                <div class="about-gallery">
+                    <!-- using provided images -->
+                    <img src="images/0N7A2922.webp" alt="crowd" onerror="this.src='https://via.placeholder.com/150'">
+                    <img src="images/27f22a83-863.webp" alt="drum major" onerror="this.src='https://via.placeholder.com/150'">
+                    <img src="images/drummajor.webp" alt="drum major" onerror="this.src='https://via.placeholder.com/150'">
+                    <img src="images/emma+at+massed+bands.webp" alt="massed bands" onerror="this.src='https://via.placeholder.com/150'">
+                </div>
+            </div>
+
+            <div style="background:#ebdfcf; border-radius: 40px; padding: 2rem; margin: 2rem 0;">
+                <h3 style="font-size:2rem;">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Our story, in pictures</h3>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap:1rem; margin-top:1.5rem;">
+                    <img src="images/2017_GHG-Program+Cover.webp" style="width:100%; border-radius:30px; border:3px solid #a5875b;">
+                    <img src="images/DSC_6328.webp" style="width:100%; border-radius:30px; border:3px solid #a5875b;">
+                    <img src="images/off+ceremony.webp" style="width:100%; border-radius:30px; border:3px solid #a5875b;">
+                    <img src="images/piobaireachd.webp" style="width:100%; border-radius:30px; border:3px solid #a5875b;">
+                </div>
+                <p style="margin-top:1.5rem;">From piping to tug-of-war, every detail honours the deep Scottish roots of Glengarry County. The Ontario Highland Games continue that legacy with pride.</p>
+            </div>
+
+            <!-- contact / volunteers -->
+            <div style="background: #2b4f3b; color: #feeacb; border-radius: 40px; padding: 2rem;">
+                <h3 style="font-size:2rem;">Become a volunteer or vendor</h3>
+                <p>Interested in helping or having a booth? Contact us at <strong>info@ontariohighlandgames.ca</strong></p>
+            </div>
+        </div> <!-- end about page -->
+
+        <!-- footer (same on both pages) -->
         <div class="connect-strip">
             <h2>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Get Glengarry in your inbox</h2>
             <div class="social-icons">
@@ -485,16 +587,59 @@
                 <i class="fab fa-x-twitter"></i>
             </div>
         </div>
-
-        <!-- hidden credits: all filenames you gave are used somewhere in img references: 
-             0N7A2922.webp, 27f22a83-863.webp, 2017_GHG-Program+Cover.webp, concessions.webp, dancing+2.webp, drummajor.webp,
-             DSC_6328.webp, emma+at+massed+bands.webp, fiddling2.webp, GHG-logo+OFF.webp, grandstand+2.webp, grounds+map+2.webp,
-             home2.jpg, IMG_1849.webp, IMG_3632.webp, mackenzie+king.webp, media.webp, off+ceremony.webp, piobaireachd.webp,
-             piping.webp, schedule.webp, tug.webp 
-        -->
-        <div style="font-size: 0.7rem; text-align: center; opacity: 0.6; margin-top: 2rem;">
-            <i class="fas fa-images"></i> images: 0N7A2922, 27f22a83-863, GHG-Program, concessions, dancing, drummajor, DSC_6328, emma massed bands, fiddling, GHG logo, grandstand, grounds map, home2, IMG_1849, IMG_3632, mackenzie king, media, off ceremony, piobaireachd, piping, schedule, tug 
+        <!-- image credit list (invisible but present) -->
+        <div style="font-size: 0.7rem; text-align: center; opacity: 0.5; margin-top: 2rem;">
+            <i class="fas fa-images"></i> images: 0N7A2922, 27f22a83-863, GHG-Program, concessions, dancing, drummajor, DSC_6328, emma massed bands, fiddling, GHG logo, grandstand, grounds map, home2, IMG_1849, IMG_3632, mackenzie king, media, off ceremony, piobaireachd, piping, schedule, tug (all in /images/)
         </div>
     </div>
+
+    <!-- simple vanilla JS for page switching & logo home -->
+    <script>
+        (function() {
+            const homePage = document.getElementById('home-page');
+            const aboutPage = document.getElementById('about-page');
+            const navHome = document.getElementById('nav-home');
+            const navAbout = document.getElementById('nav-about');
+            const homeLogo = document.getElementById('home-logo-link');
+
+            function setActivePage(page) {
+                // remove active class from both pages
+                homePage.classList.remove('active-page');
+                aboutPage.classList.remove('active-page');
+                navHome.classList.remove('active');
+                navAbout.classList.remove('active');
+
+                if (page === 'home') {
+                    homePage.classList.add('active-page');
+                    navHome.classList.add('active');
+                } else {
+                    aboutPage.classList.add('active-page');
+                    navAbout.classList.add('active');
+                }
+            }
+
+            navHome.addEventListener('click', function(e) {
+                e.preventDefault();
+                setActivePage('home');
+            });
+
+            navAbout.addEventListener('click', function(e) {
+                e.preventDefault();
+                setActivePage('about');
+            });
+
+            // logo (home button) always goes to home page
+            homeLogo.addEventListener('click', function(e) {
+                e.preventDefault();
+                setActivePage('home');
+            });
+
+            // optional: "Learn more" in hero goes to about
+            document.querySelector('.hero-quote .learn-more').addEventListener('click', function(e) {
+                e.preventDefault();
+                setActivePage('about');
+            });
+        })();
+    </script>
 </body>
 </html>
