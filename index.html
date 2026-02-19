@@ -6,10 +6,10 @@
     <title>Glengarry Highland Games</title>
     <!-- Font Awesome 6 (free) for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Favicon: using the GHG logo -->
+    <!-- Favicon: using the exact GHG logo image -->
     <link rel="icon" type="image/webp" href="images/GHG-logo+OFF.webp">
     <link rel="shortcut icon" href="images/GHG-logo+OFF.webp" type="image/webp">
-    <!-- Fallback emoji favicon -->
+    <!-- Fallback for browsers with limited webp support -->
     <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='10' y='70' font-size='70' fill='%232b4f3b'>🏴󠁧󠁢󠁳󠁣󠁴󠁿</text></svg>">
     <style>
         * {
@@ -31,7 +31,7 @@
             padding: 1.5rem 2rem;
         }
 
-        /* ===== HEADER with logo as home button ===== */
+        /* ===== HEADER with logo as home button - NO BOX AROUND LOGO ===== */
         .header-row {
             display: flex;
             align-items: center;
@@ -60,11 +60,8 @@
             width: auto;
             max-width: 320px;
             object-fit: contain;
-            background: #f8f2e7;
-            border-radius: 20px;
-            padding: 0.5rem;
-            border: 2px solid #b8aa92;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            /* REMOVED: background, border, border-radius, padding, box-shadow */
+            /* Now just the clean image with no box/styling */
         }
 
         .since-badge {
@@ -442,11 +439,12 @@
 </head>
 <body>
     <div class="container">
-        <!-- HEADER with logo home button -->
+        <!-- HEADER with logo home button - NO BOX AROUND LOGO -->
         <div class="header-row">
             <div class="logo-home">
                 <a href="#" class="logo-link" id="home-logo-link">
-                    <img src="images/GHG-logo+OFF.webp" alt="Highland Games logo" class="logo-img" onerror="this.src='https://via.placeholder.com/320x120?text=GHG+Logo'">
+                    <!-- Clean logo with no box styling -->
+                    <img src="images/GHG-logo+OFF.webp" alt="Glengarry Highland Games logo" class="logo-img" onerror="this.src='https://via.placeholder.com/320x120?text=GHG'">
                 </a>
             </div>
             <div class="since-badge"><i class="fas fa-flag"></i> Since 1948</div>
