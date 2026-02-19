@@ -6,10 +6,9 @@
     <title>Glengarry Highland Games</title>
     <!-- Font Awesome 6 (free) for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Favicon: using the exact GHG logo image -->
+    <!-- Favicon: using the exact GHG logo image for all formats -->
     <link rel="icon" type="image/webp" href="images/GHG-logo+OFF.webp">
     <link rel="shortcut icon" href="images/GHG-logo+OFF.webp" type="image/webp">
-    <!-- Fallback for browsers with limited webp support -->
     <link rel="icon" type="image/png" sizes="32x32" href="images/GHG-logo+OFF.webp">
     <style>
         * {
@@ -31,7 +30,7 @@
             padding: 1.5rem 2rem;
         }
 
-        /* ===== HEADER with logo as home button - NO BOX AROUND LOGO ===== */
+        /* ===== HEADER with logo as home button - ORIGINAL COLORS PRESERVED ===== */
         .header-row {
             display: flex;
             align-items: center;
@@ -60,8 +59,13 @@
             width: auto;
             max-width: 320px;
             object-fit: contain;
-            /* REMOVED: background, border, border-radius, padding, box-shadow */
-            /* Now just the clean image with no box/styling */
+            /* CRITICAL: Preserve original colors - no filters, no blending */
+            filter: none;
+            -webkit-filter: none;
+            color-profile: auto;
+            color-rendering: auto;
+            image-rendering: auto;
+            /* No background, border, or box styling - clean logo only */
         }
 
         .since-badge {
@@ -439,12 +443,12 @@
 </head>
 <body>
     <div class="container">
-        <!-- HEADER with logo home button - NO BOX AROUND LOGO -->
+        <!-- HEADER with logo home button - ORIGINAL COLORS PRESERVED -->
         <div class="header-row">
             <div class="logo-home">
                 <a href="#" class="logo-link" id="home-logo-link">
-                    <!-- Clean logo with no box styling -->
-                    <img src="images/GHG-logo+OFF.webp" alt="Glengarry Highland Games logo" class="logo-img" onerror="this.src='https://via.placeholder.com/320x120?text=GHG'">
+                    <!-- Logo will display with its original colors - no filters applied -->
+                    <img src="images/GHG-logo+OFF.webp" alt="Glengarry Highland Games logo" class="logo-img" onerror="this.src='https://via.placeholder.com/320x120?text=GHG+Logo'">
                 </a>
             </div>
             <div class="since-badge"><i class="fas fa-flag"></i> Since 1948</div>
